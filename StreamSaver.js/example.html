@@ -18,7 +18,7 @@
 		</svg>
 		<style>.github-corner:hover .octo-arm{animation: octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%, 100%{transform: rotate(0)}20%, 60%{transform: rotate(-25deg)}40%, 80%{transform: rotate(10deg)}}@media (max-width: 500px){.github-corner:hover .octo-arm{animation: none}.github-corner .octo-arm{animation: octocat-wave 560ms ease-in-out}.github-corner-text{display: none;}.github-corner svg{height: 50px; width: 50px;}}</style>
 	</a> -->
-
+  <video autoplay></video>
 	<h1>Example of saving a stream directly to the filesystem</h1>
 	<form id="$form">
 		<h3>What would you like to save?</h3>
@@ -230,6 +230,7 @@
 			}
 
 			permission && su.request(permission).then(stream => {
+        document.querySelector('video').srcObject = stream;
 				let fr = new FileReader
 				let mediaRecorder = new MediaRecorder(stream)
 				let chunks = Promise.resolve()
