@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SW测试</title>
+  <style>
+    img {
+      height: 200px;
+    }
+    .cacheButton{
+      height: 40px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="http://yyseven.com/1.jpg" alt="">
+  <img src="http://yyseven.com/2.jpg" alt="">
+  <img src="http://yyseven.com/3.jpg" alt="">
+  <img src="http://yyseven.com/4.jpg" alt="">
+  <img src="http://yyseven.com/5.jpg" alt="">
+  <img src="http://yyseven.com/6.jpg" alt="">
+  <img src="http://yyseven.com/7.jpg" alt="">
+  <img src="http://yyseven.com/8.jpg" alt="">
+  <br>
+  <button class="cacheButton">cacheButton</button>
+</body>
+<script>
+
+    var currentPath = window.location.pathname;
+    var cacheButton = document.querySelector('.cacheButton');
+
+    var imageArray = document.querySelectorAll('img');
+    if (cacheButton) {
+      cacheButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        // 缓存当前链接和使用的图片
+        var pageResources = [currentPath];
+        for (i = 0; i < imageArray.length; i++) {
+          pageResources.push(imageArray[i].src);
+        }
+        caches.open('offline-' + currentPath).then(function (cache) {
+          var updateCache = cache.addAll(pageResources);
+
+          updateCache.then(function () {
+            console.log('Article is now available offline.');
+            cacheButton.innerHTML = "succeed";
+          }).catch(function (error) {
+            console.log('Article could not be saved offline.');
+            cacheButton.innerHTML = "failed";
+          });
+        });
+      });
+    }
+</script>
+
+</html>
