@@ -27,17 +27,7 @@ var imgArr = [
   '/static/images/7.jpg',
   '/static/images/8.jpg',
   '/static/images/9.jpg',
-  '/static/images/10.jpg',
-  '/static/images/11.jpg',
-  '/static/images/12.jpg',
-  '/static/images/13.jpg',
-  '/static/images/14.jpg',
-  '/static/images/15.jpg',
-  '/static/images/16.jpg',
-  '/static/images/17.jpg',
-  '/static/images/18.jpg',
-  '/static/images/19.jpg',
-  '/static/images/20.jpg'
+  '/static/images/10.jpg'
 ]
 caches.open(CACHE_NAME).then(function (cache) {
   cache.addAll(imgArr);
